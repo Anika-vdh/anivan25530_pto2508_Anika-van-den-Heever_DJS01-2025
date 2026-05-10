@@ -34,55 +34,86 @@ export const createModal = {
     const genreNames =
       GenreService.getNames(podcast.genres);
 
-    content.innerHTML = `
+    const seasonCards =
+      seasonData.seasonDetails
+        .map(
+          (season, index) =>
+            `
+            <div class="season-card">
 
-      <img
-        class="modal-image"
-        src="${podcast.image}"
-        alt="${podcast.title}"
-      >
+              <div>
+
+                <h3>
+                  Season ${index + 1}
+                </h3>
+
+                <p>
+                  ${season.title}
+                </p>
+
+              </div>
+
+              <p>
+                ${season.episodes.length} episodes
+              </p>
+
+            </div>
+            `
+        )
+        .join("");
+
+    content.innerHTML = `
 
       <h2 class="modal-title">
         ${podcast.title}
       </h2>
 
-      <p class="modal-description">
-        ${podcast.description}
-      </p>
+      <div class="modal-top">
 
-      <div class="modal-genres">
+        <div class="modal-image">
+          Large Cover Image
+        </div>
 
-        ${genreNames
-          .map(
-            (genre) =>
-              `<span class="genre-tag">${genre}</span>`
-          )
-          .join("")}
+        <div class="modal-info">
+
+          <h3>Description</h3>
+
+          <p class="modal-description">
+            ${podcast.description}
+          </p>
+
+          <h3>Genres</h3>
+
+          <div class="modal-genres">
+
+            ${genreNames.map(
+              (genre) =>
+                `
+                <span class="genre-tag">
+                  ${genre}
+                </span>
+                `
+            ).join("")}
+
+          </div>
+
+          <p class="modal-date">
+            ${DateUtils.format(podcast.updated)}
+          </p>
+
+        </div>
 
       </div>
 
-      <p class="modal-date">
-        ${DateUtils.format(podcast.updated)}
-      </p>
+      <div class="season-section">
 
-      <div class="season-list">
+        <h2>Seasons</h2>
 
-        ${seasonData.seasonDetails
-          .map(
-            (season) => `
-              
-              <div class="season-card">
+        <div class="season-list">
 
-                <h3>${season.title}</h3>
+          ${seasonCards}
 
-                <p>
-                  ${season.episodes} episodes
-                </p>
-
-              </div>
-            `
-          )
-          .join("")}
+        </div>
 
       </div>
     `;

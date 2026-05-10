@@ -19,10 +19,59 @@
 <body>
 
   <header class="header">
-    <h1>Podcast App</h1>
-  </header>
+
+  <div class="header-left">
+
+    <div class="logo-circle"></div>
+
+    <h1>PodcastApp</h1>
+
+  </div>
+
+  <div class="header-right">
+
+    <span class="search-icon">⌕</span>
+
+    <div class="profile-circle"></div>
+
+  </div>
+
+</header>
 
   <main>
+
+    <section class="filters">
+
+  <label for="genreFilter">
+    Filter by:
+  </label>
+
+  <select id="genreFilter">
+    <option value="all">
+      All Genres
+    </option>
+  </select>
+
+  <select id="sortFilter">
+
+    <option value="recent">
+      Recently Updated
+    </option>
+
+    <option value="popular">
+      Most Popular
+    </option>
+
+    <option value="newest">
+      Newest
+    </option>
+
+  </select>
+
+</section>
+
+
+</section>
 
     <section
       id="podcastGrid"
